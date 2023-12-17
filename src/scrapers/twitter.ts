@@ -55,7 +55,7 @@ export async function twitter(username: string | null, { headless, imageFormat }
 
     await page.goto(`https://twitter.com/${username}/?lang=en`, {
       waitUntil: 'load',
-      timeout: 10 * 1000,
+      timeout: 30 * 1000,
     });
 
     const doneList = new Set<string>();
