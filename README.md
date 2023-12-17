@@ -1,5 +1,7 @@
 # timeline-dl
 
+Download Twitter timeline images
+
 ## Install
 
 Run directly
