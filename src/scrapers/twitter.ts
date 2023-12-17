@@ -25,7 +25,6 @@ export async function twitter(username: string | null, { headless, imageFormat }
   }
   const browser = await launch({
     executablePath: '/usr/bin/chromium',
-    userDataDir: '/tmp/pichub-puppeteer',
     headless,
     defaultViewport: {
       width: 1280,
