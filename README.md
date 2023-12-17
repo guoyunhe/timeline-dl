@@ -2,40 +2,24 @@
 
 ## Install
 
-### Run directly
+Run directly
 
 ```bash
 npx timeline-dl
 ```
 
-### Install on system
+Install on system
 
 ```bash
 npm i -g timeline-dl
 %binName%
 ```
 
-### Install in project
+## Twitter
 
-```bash
-npm i -D timeline-dl
-```
-
-Add script entry:
-
-```json
-{
-  "scripts": {
-    "%binName%": "%binName%"
-  }
-}
-```
-
-Run:
-
-```bash
-npm run %binName%
-```
+1. First create a new account. It can be blocked so don't use your main account!
+2. Then use F12 to open Chrome/Firefox's developer tool, find cookie `auth_token` and copy the value.
+3. Create a new folder and run `TWITTER_AUTH_TOKEN=xxx timeline-dl twitter KimKardashian`
 
 ## Options
 
