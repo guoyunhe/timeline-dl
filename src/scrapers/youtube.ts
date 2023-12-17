@@ -1,10 +1,7 @@
-import { exec } from 'child_process';
 import fse from 'fs-extra';
 import { launch } from 'puppeteer-core';
-import { promisify } from 'util';
 import { execute } from '../utils/execute';
 
-const execPromise = promisify(exec);
 const { readJson, writeJson, readdir } = fse;
 
 const videoSelector = 'a[href^="/watch?v="]';
@@ -49,6 +46,8 @@ export async function youtube(username: string | null, { headless, imageFormat }
       timeout: 10 * 1000,
     });
 
+    await page.waitForSelector(videoSelector);
+
     const doneList = new Set<string>();
 
     // eslint-disable-next-line no-constant-condition
@@ -75,36 +74,7 @@ export async function youtube(username: string | null, { headless, imageFormat }
         doneList.add(video);
       }
 
-      const lastTweet = videos.pop();
-
-      if (
-        config.updatedAt &&
-        lastTweet &&
-        new Date(config.updatedAt).getTime() > new Date(lastTweet.dateTime).getTime()
-      ) {
-        break;
-      }
-
-      const scrollStatus = await page.$eval('[data-testid="cellInnerDiv"]:last-child', (e) => {
-        const rect = e.getBoundingClientRect();
-        if (
-          rect.top >= 0 &&
-          rect.left >= 0 &&
-          rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-          rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        ) {
-          return 'end';
-        } else {
-          return 'loading';
-        }
-      });
-
-      if (scrollStatus === 'end') {
-        break;
-      } else {
-        await page.keyboard.press('PageDown');
-      }
-      continue;
+      await page.keyboard.press('PageDown');
     }
     config.updatedAt = startTime.toISOString();
     await writeJson('youtube.json', config, { spaces: 2 });
