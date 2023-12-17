@@ -106,7 +106,9 @@ export async function twitter(username: string | null, { headless, imageFormat }
                   const imgUrl =
                     img.substring(0, img.indexOf('?')) + `?format=${imageFormat}&name=4096x4096`;
                   const imgFileName = sanitize(
-                    `${tweet.dateTime.substring(0, 10)} ${tweet.text} (${index + 1}).${imageFormat}`
+                    `${tweet.dateTime.substring(0, 10)} ${tweet.text || ''} (${
+                      index + 1
+                    }).${imageFormat}`
                   );
                   try {
                     await download(imgUrl, imgFileName);
