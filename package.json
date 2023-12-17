@@ -1,8 +1,11 @@
 {
   "name": "timeline-dl",
   "version": "1.0.0",
-  "description": "",
-  "keywords": [],
+  "description": "Download Twitter timeline images and videos",
+  "keywords": [
+    "twitter",
+    "instagram"
+  ],
   "homepage": "https://github.com/guoyunhe/timeline-dl#readme",
   "bugs": {
     "url": "https://github.com/guoyunhe/timeline-dl/issues"
